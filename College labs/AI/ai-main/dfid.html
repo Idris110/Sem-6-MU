@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        graph  = {
+            '5' : ['3', '7'],
+            '3' : ['2', '4'],
+            '7' : ['8'],
+            '2' : [],
+            '4' : ['9'],
+            '8' : [],
+            '9' : []
+        }
+        visited =[]
+        
+        def dls(node , limit , goal,  depth = 0):
+            visited.append(node)
+            if node == goal:
+                return True
+            else:
+                if depth lt limit:
+                    # visited.append(node)
+                    for i in graph[node]:
+                        if i not in visited:
+                            print(i,'->',end='')
+                            if dls(i, limit, goal, depth+1):
+                                return True
+                            
+        
+        for i in range(len(graph)):
+            print('ITERATION',i+1)
+            if dls('5', i, '9'):
+                
+                print('\nGoal Reached')
+                print('visited',visited)
+                break
+            else:
+                print('\nNot Reached')
+                print('visited',visited)
+                visited = []
+        
+    </p>
+</body>
+</html>

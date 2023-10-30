@@ -1,0 +1,2 @@
+root@ubuntu:/home/tsec# sudo grep -c "svm\|vmx" /proc/cpuinfo
+24

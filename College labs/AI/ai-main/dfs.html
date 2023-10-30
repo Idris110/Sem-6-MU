@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        graph  = {
+            '5' : ['3', '7'],
+            '3' : ['2', '4'],
+            '7' : ['8'],
+            '2' : [],
+            '4' : ['8'],
+            '8' : []
+        }
+        visited =[]
+        
+    def dfsp(visited):
+        for i in visited:
+            print(i,'->',end='')
+
+            
+def dfs(visited, node, final):
+if node not in visited:
+    visited.extend(node)
+    print(node , ' final ', final)
+    if node == final:
+        print('found')
+        return visited
+    for i in graph[node]:
+        dfs(visited, i, final)
+     
+dfs(visited, '5', '7')
+dfsp(visited)
+    </p>
+</body>
+</html>

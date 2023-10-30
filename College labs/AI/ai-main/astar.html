@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+    gn = [
+    [99,1,2,99,99,99,99,99],
+    [99,99,99,99,99,99,4,7],
+    [99,99,7,1,99,99,99,99],
+    [99,99,99,99,99,5,99,99],
+    [99,99,99,99,99,12,99,99],
+    [99,99,99,99,99,99,99,99],
+    [99,99,99,99,99,2,99,99],
+    [99,99,99,99,99,3,99,99]
+]   
+
+hn = [-1,5,6,4,15,0,5,8]
+
+# fn = Gn+ hn
+nodes=[]
+indexes = []
+
+visites = []
+
+def astar(initial,goal,pre):
+    if initial == goal:
+        return True
+
+    print('GN' , gn[initial])
+    for i in gn[initial]:
+        if i!=99:
+            print('Gn',i)
+            print('Hn',hn[gn[initial].index(i)])
+            nodes.append(i+hn[gn[initial].index(i)]+pre)
+            indexes.append(gn[initial].index(i))
+    print('Fn', nodes)
+    print('INDEXES',indexes)
+    visites.append(initial)
+    initial = indexes[nodes.index(min(nodes))]
+    print('Min',min(nodes))
+    pre= min(nodes)
+    nodes.remove(min(nodes))
+    indexes.remove(initial)
+    print('Initial',initial)
+    print('Goal',goal)
+    print('====================')
+    astar(initial,goal, pre)
+        
+        
+        
+initial = 0
+goal = 5
+astar(0,5,0)
+# visites.append(5)
+for i in visites:
+    if(i==5):
+        print(i)
+    else:
+        print(i,'->',end='')
+# print('Path:',visites)
+print(goal)
+x=[]
+for i in range(len(visites)):
+    x.append(visites[len(visites)-i-1])   
+
+print(x, '\n') 
+
+for i in x:
+    # print('\ngn[i][goal]',gn[i].index(gn[i][goal]))
+    if gn[i][goal]!=99:
+        print(gn[i].index(gn[i][goal]),'->',end='')
+        goal = i
+        
+print(goal)
+</p>
+</body>
+</html>

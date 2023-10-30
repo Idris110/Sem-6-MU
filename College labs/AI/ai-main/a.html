@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        import heapq
+
+        inf = 99
+
+        graph = [
+        [inf, 1, 2, inf, inf, inf, inf, inf],
+        [inf, inf, inf, 7, 4, inf, inf, inf],
+        [inf, inf, inf, inf, inf, 7, 1, inf],
+        [inf, inf, inf, inf, inf, inf, inf, 3],
+        [inf, inf, inf, inf, inf, inf, inf, 2],
+        [inf, inf, inf, inf, inf, inf, inf, 5],
+        [inf, inf, inf, inf, inf, inf, inf, 12],
+        [inf, inf, inf, inf, inf, inf, inf, inf],
+        ]
+
+        h = [-1, 5, 6, 8, 5, 4, 15, 0]
+
+        start = 0
+        goal = 7
+
+        def reconstruct(parent, current):
+        path = [current]
+
+        while current in parent.keys():
+        current = parent[current]
+        if current != None:
+        path.append(current)
+
+        return path
+
+        open_list = []
+        closed_list = []
+
+        f = {start: 0}
+        g = {start: 0}
+        parent = {start: None}
+
+        heapq.heappush(open_list, (f[start], start))
+
+        found = False
+
+        backpointer = []
+
+        while len(open_list) > 0:
+        q = heapq.heappop(open_list)[1]
+
+        if q == goal:
+        reconstruct(parent, q)
+        print("Found")
+        break
+
+        for node, distance in enumerate(graph[q]):
+        if distance != inf:
+        temp_g = g[q] + distance
+        temp_f = temp_g + h[node]
+
+        if node not in open_list and node not in closed_list:
+        parent[node] = q
+        f[node] = temp_f
+        g[node] = temp_g
+        heapq.heappush(open_list, (temp_f, node))
+
+        elif temp_f lt g[node]: parent[node]=q g[node]=temp_g f[node]=temp_f closed_list.append(q) </p>
+</body>
+
+</html>

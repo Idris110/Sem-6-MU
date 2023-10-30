@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        
+graph= [
+[1000,7,3,1000,1000,1000,1000,1000],
+[1000,1000,1000,1000,6,1000,1000,1000],
+[1000,2,1000,9,1000,1000,1000,1000],
+[1000,1000,1000,1000,3,1000,1000,13],
+[1000,1000,1000,1000,1000,2,1,1000],
+[1000,1000,1000,1000,1000,1000,1000,1000],
+[1000,1000,1000,1000,1000,1000,1000,1000],
+[1000,1000,1000,1000,1000,1000,1000,1000]
+]
+cnt=0
+path = []
+
+def ucs(graph,initial,goal):
+open = {}
+closed = []
+open[initial] = 0
+used = initial
+
+while True:
+    if(used == goal):
+        print('Goal Reached')
+        break
+    else:
+
+        for i in graph[used]:
+            if(i!=1000):
+                open[(graph[used].index(i))]= i
+
+        closed.append(used)
+        # open.remove(used)
+        del open[used]
+        print('Open:',open)
+        print('Closed:',closed)
+        # used = graph[used].index(min(graph[used]))
+        # print('min open:',min(open, key=open.get) , 'open.get',min(open))
+        used = min(open, key=open.get)
+        print('NEW Used:',used)
+        path.append(used)
+print('Path:',path)
+
+goal = 7
+initial = 0
+ucs(graph,initial,goal)
+
+print(initial,'->',end='')
+for i in path:
+if(i==goal):
+    print(i)
+else:
+    print(i,'->',end='')
+
+# replace number with alphabet
+print(chr(initial+65),'->',end='')
+for i in path:
+print(chr(i+65),'->',end='')
+
+
+    </p>
+</body>
+</html>

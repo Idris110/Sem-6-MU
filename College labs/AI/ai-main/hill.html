@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        hill = [[12,15,10,7,14,16],
+        [13,18,13,20,5,23],
+        [17,9,23,24,19,2],
+        [7,14,16,12,34,10],
+        [20,5,23,13,18,13],
+        [24,19,2,17,9,23]]
+path = []
+def hillclimbing(ix,iy):
+    x=ix
+    y=iy
+    initial = hill[x][y]
+    print(initial)
+    i=ix
+    j=iy
+    pre = -1
+    path.append(initial)
+    while pre != initial:
+      
+        if i==ix and j==iy or i!=ix :
+            print('check1' , hill[i][j])
+            pre = initial
+            if hill[i-1][j] > initial and i-1>=0:
+                
+                initial = hill[i-1][j]
+                print('h[-1][0]',hill[i-1][j])
+                i = i-1
+                path.append(initial)
+
+
+            if hill[i][j-1] > initial and j-1>=0:
+                initial = hill[i][j-1]
+                print('h[0][-1]',hill[i][j-1])
+                j = j-1
+                path.append(initial)
+                
+
+
+            if hill[i+1][j] > initial and i+1 lt len(hill):
+                initial = hill[i+1][j]
+                print('h[+1][0]',hill[i+1][j])
+                i = i+1
+                path.append(initial)
+                
+
+            if hill[i][j+1] > initial and j+1 lt len(hill[i]):
+                initial = hill[i][j+1]
+                print('h[0][+1]',hill[i][j+1])
+                j = j+1
+                path.append(initial)
+                
+
+            if hill[i-1][j-1] > initial and i-1>=0 and j-1>=0:
+                initial = hill[i-1][j-1]
+                print('h[-1][-1]',hill[i-1][j-1])
+                i = i-1
+                j = j-1
+                path.append(initial)
+                
+
+            if hill[i+1][j+1] > initial and i+1 lt len(hill) and j+1 lt len(hill[i]):
+                initial = hill[i+1][j+1]
+                print('h[+1][+1]',hill[i+1][j+1])
+                i = i+1
+                j = j+1
+                path.append(initial)
+
+hillclimbing(0,1)
+
+print(path)
+    </p>
+</body>
+</html>
